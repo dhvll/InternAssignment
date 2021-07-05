@@ -4,6 +4,8 @@ from django.contrib.auth import (
     authenticate
 )
 
+from .models import Post
+
 User = get_user_model()
 
 class UserLoginForm(forms.Form):
@@ -53,3 +55,12 @@ class UserRegisterForm(forms.ModelForm):
             raise forms.ValidationError("This email is already used")
 
         return super(UserRegisterForm, self).clean(*args, **kwargs)
+
+class PostForm(forms.ModelForm):
+
+    class Meta:
+        model = Post
+        fields = [
+            'user',
+            'text',
+        ]

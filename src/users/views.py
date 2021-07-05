@@ -2,11 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,get_user_model,login,logout
 
-from .forms import UserLoginForm, UserRegisterForm
+from .forms import UserLoginForm, UserRegisterForm, PostForm
+from .models import Post
 
 @login_required
 def home(request):
-    context = {}
+    user = request.user
+    posts = Post.objects.filter(user=user).order_by('-created_at')
+    context = {'posts': posts}
     return render(request, 'users/home.html', context)
 
 def loginUser(request):
@@ -46,3 +49,11 @@ def registerUser(request):
 def logoutUser(request):
     logout(request)
     return redirect('login')
+
+def post_view(request):
+    form = PostForm(request.POST)
+    if form.is_valid():
+        form.save() 
+        return redirect('home')
+    context = {'form': form}
+    return render(request, 'users/post.html', context)
