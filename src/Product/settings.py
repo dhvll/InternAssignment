@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-   # 'products',
     'users',
+    'products',
 ]
 
 MIDDLEWARE = [
@@ -82,9 +82,13 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'users.db.sqlite3',
     },
+    'products_db': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'products.db.sqlite3',
+    },
 }
 
-DATABASE_ROUTERS = ['routers.db_routers.AuthRouter',] 
+DATABASE_ROUTERS = ['routers.db_routers.AuthRouter', 'routers.db_routers.Product',] 
 
 
 # Password validation
