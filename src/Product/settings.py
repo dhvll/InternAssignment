@@ -77,11 +77,14 @@ WSGI_APPLICATION = 'Product.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default': {},
+    'users_db': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'NAME': BASE_DIR / 'users.db.sqlite3',
+    },
 }
+
+DATABASE_ROUTERS = ['routers.db_routers.AuthRouter',] 
 
 
 # Password validation
