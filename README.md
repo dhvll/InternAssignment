@@ -1,5 +1,5 @@
 # InternAssignment
- Internship assignment.
+ Setting Multiple Database for different apps.
 ## Technologies
 
 - Django
